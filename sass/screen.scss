@@ -1,0 +1,267 @@
+@import "compass/reset";
+@import "compass";
+@import "fonts";
+
+/* colors */
+$grayBackground: #edf2f4;
+$grayDark: #1d1d1d;
+$redLight: #ca4646;
+$redDark: #962323;
+$blueFacebook: #3b5998;
+
+/* dimensions */
+$smallLogoDim: 35px;
+$bigLogoDim: 20vw;
+$bigLogoMaxDim: 180px;
+$roundImgDim: 180px;
+
+/* mixins */
+@mixin antialiasing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin contain {
+  max: {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@mixin material-shadow {
+  @include box-shadow(0 0 6px 4px #c5c5c5);
+}
+
+body {
+  background-color: $grayBackground;
+  letter-spacing: 1px;
+  font-family: Lato, Verdana, Arial, sans-serif;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+nav a {
+  color: $grayDark;
+  text-decoration: none;
+  @include transition(color 200ms ease-in-out);
+  &:hover {
+    color: $redLight;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+}
+
+header {
+  padding: 5px;
+  .logo-small {
+    display: inline-block;
+    margin: 0 20px;
+    img {
+      width: $smallLogoDim;
+      height: $smallLogoDim;
+    }
+  }
+  nav {
+    display: inline-block;
+    float: right;
+    li {
+      display: inline-block;
+      text-transform: uppercase;
+      margin: 0 20px;
+      line-height: $smallLogoDim;
+    }
+  }
+}
+
+#cover {
+  color: #fff;
+  position: relative;
+  margin-bottom: $bigLogoDim / 2;
+  .main {
+    width: 100%;
+    background: $grayDark url('../img/photos/cover-pic.jpg') center bottom no-repeat;
+    background-size: cover;
+    padding: 6em 0 $bigLogoDim / 2;
+    position: relative;
+
+    @include box-shadow(inset 0 -7px 10px 3px rgba(29, 29, 29, 0.79));
+
+    &:before {
+      content: '';
+      display: block;
+      width: 50%;
+      background: #fff;
+      opacity: .17;
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      @include transform(matrix(1.747,0,-0.297,0.994,237.645,0.419));
+    }
+  }
+
+  h1 {
+    @include text-shadow(2px 2px 5px $grayDark);
+    @include antialiasing;
+
+    position: relative;
+    font: 7vh Albertus, Century Gothic, Times New Roman, serif;
+    letter-spacing: initial;
+    text-align: center;
+    line-height: .8em;
+
+    small, span {
+      display: block;
+    }
+    small {
+      font-size: 0.4em;
+    }
+  }
+
+  .logo-big {
+    position: absolute;
+    bottom: - 7 / 20 * $bigLogoDim;
+    text-align: center;
+    width: 100%;
+    img {
+      height: $bigLogoDim;
+      width: $bigLogoDim;
+      max: {
+        width: $bigLogoMaxDim;
+        height: $bigLogoMaxDim;
+      }
+      @include box-shadow(0 0 6px 4px #434343);
+      @include border-radius(50%);
+      background: #fff;
+      border: 2px solid #000;
+    }
+  }
+
+}
+
+.social-engage-cont {
+  white-space: nowrap;
+  font: {
+    size: 1.3em;
+    weight: bold;
+  }
+  > div {
+    display: inline-block;
+    width: 50%;
+    margin: 0;
+    padding: .2em 1.5em .3em;
+  }
+  .youtube {
+    background: $redLight;
+  }
+  .facebook {
+    background: $blueFacebook;
+  }
+  .right {
+    text-align: right;
+  }
+  a {
+    color: #fff;
+    text-decoration: none;
+    &:after {
+      @extend .icon;
+      content: $angle-right;
+      margin-left: 15px;
+      vertical-align: sub;
+      font-size: 1.3em;
+    }
+  }
+}
+
+.image.round {
+  height: $roundImgDim;
+  width: $roundImgDim;
+  overflow: hidden;
+
+  border: 3px solid #fff;
+  background: #fff;
+
+  margin: 5px 4em;
+
+  @include border-radius(50%);
+  @include material-shadow;
+  img {
+    max-height: 100%;
+  }
+}
+
+section {
+  &.left-align {
+    .image {
+      float: left;
+    }
+    .button {
+      float: right;
+    }
+  }
+
+  .button {
+    margin: 20px 0;
+  }
+}
+
+.description {
+  margin: 5px 4em;
+  p {
+    font-size: 1.3em;
+    line-height: 1.4em;
+
+    strong {
+      color: $redDark;
+      &.stronger {
+        font: {
+          size: 1.3em;
+          weight: bold;
+        }
+      }
+    }
+  }
+}
+
+.button {
+  text: {
+    transform: uppercase;
+    decoration: none;
+    align: center;
+  }
+  font: {
+    size: 1.2em;
+    weight: bold;
+  }
+
+  min-width: 12em;
+  display: inline-block;
+  padding: 7px 15px;
+
+  background: transparent;
+  border: 2px solid $redDark;
+  color: $redDark;
+
+  @include border-radius(20px);
+  @include transition(all 200ms ease-in-out);
+
+  &:hover {
+    color: #fff;
+    background: $redLight;
+    border-color: $redLight;
+  }
+  &:active{
+    @include transform(translateY(2px));
+    color: #fff;
+    background: $redLight;
+    border-color: $redDark;
+  }
+}
