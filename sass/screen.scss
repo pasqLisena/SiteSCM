@@ -3,6 +3,7 @@
 @import "fonts";
 
 /* colors */
+$grayLight: #fff8f8;
 $grayBackground: #edf2f4;
 $grayDark: #1d1d1d;
 $redLight: #ca4646;
@@ -11,9 +12,11 @@ $blueFacebook: #3b5998;
 
 /* dimensions */
 $smallLogoDim: 35px;
-$bigLogoDim: 20vw;
+$footerLogoDim: 46px;
+$bigLogoDim: 15vw;
 $bigLogoMaxDim: 180px;
 $roundImgDim: 180px;
+$contactRoundDim: 40px;
 
 /* mixins */
 @mixin antialiasing {
@@ -32,6 +35,10 @@ $roundImgDim: 180px;
   @include box-shadow(0 0 6px 4px #c5c5c5);
 }
 
+@mixin section-shadow {
+  @include box-shadow(inset 0 -7px 10px 3px rgba(29, 29, 29, 0.79));
+}
+
 body {
   background-color: $grayBackground;
   letter-spacing: 1px;
@@ -45,7 +52,7 @@ body {
 }
 
 nav a {
-  color: $grayDark;
+  color: inherit;
   text-decoration: none;
   @include transition(color 200ms ease-in-out);
   &:hover {
@@ -61,6 +68,7 @@ nav a {
 
 header {
   padding: 5px;
+  color: $grayDark;
   .logo-small {
     display: inline-block;
     margin: 0 20px;
@@ -92,7 +100,7 @@ header {
     padding: 6em 0 $bigLogoDim / 2;
     position: relative;
 
-    @include box-shadow(inset 0 -7px 10px 3px rgba(29, 29, 29, 0.79));
+    @include section-shadow;
 
     &:before {
       content: '';
@@ -104,7 +112,7 @@ header {
       top: 0;
       right: 0;
       height: 100%;
-      @include transform(matrix(1.747,0,-0.297,0.994,237.645,0.419));
+      @include transform(matrix(1.747, 0, -0.297, 0.994, 237.645, 0.419));
     }
   }
 
@@ -113,7 +121,7 @@ header {
     @include antialiasing;
 
     position: relative;
-    font: 7vh Albertus, Century Gothic, Times New Roman, serif;
+    font: 7vw Albertus, Century Gothic, Times New Roman, serif;
     letter-spacing: initial;
     text-align: center;
     line-height: .8em;
@@ -128,7 +136,7 @@ header {
 
   .logo-big {
     position: absolute;
-    bottom: - 7 / 20 * $bigLogoDim;
+    bottom: - 1 / 3 * $bigLogoDim;
     text-align: center;
     width: 100%;
     img {
@@ -138,7 +146,7 @@ header {
         width: $bigLogoMaxDim;
         height: $bigLogoMaxDim;
       }
-      @include box-shadow(0 0 6px 4px #434343);
+      @include box-shadow(1px 3px 6px -1px #434343);
       @include border-radius(50%);
       background: #fff;
       border: 2px solid #000;
@@ -198,13 +206,23 @@ header {
   }
 }
 
-section {
-  &.left-align {
+section.section {
+  @include clearfix;
+  margin: 6em auto;
+  &:nth-of-type(even) {
     .image {
       float: left;
     }
     .button {
       float: right;
+    }
+  }
+  &:nth-of-type(odd) {
+    .image {
+      float: right;
+    }
+    .button {
+      float: left;
     }
   }
 
@@ -244,7 +262,7 @@ section {
 
   min-width: 12em;
   display: inline-block;
-  padding: 7px 15px;
+  padding: 7px 20px;
 
   background: transparent;
   border: 2px solid $redDark;
@@ -258,10 +276,154 @@ section {
     background: $redLight;
     border-color: $redLight;
   }
-  &:active{
+  &:active {
     @include transform(translateY(2px));
     color: #fff;
     background: $redLight;
     border-color: $redDark;
+  }
+
+  &.dark {
+    background: rgba(255, 255, 255, 0.87);
+    color: $grayDark;
+    border: none;
+    &:hover {
+      color: $redDark;
+      background: #fff;
+    }
+  }
+}
+
+.parallax-item {
+  background: {
+    color: #000;
+    position: center center;
+    repeat: no-repeat;
+    size: cover;
+  }
+  min-height: 20em;
+  text-align: center;
+  @include section-shadow;
+  .button {
+    margin: 6em;
+  }
+}
+
+footer {
+  @include clearfix;
+  background: $grayDark;
+  color: $grayLight;
+
+  .footer-title {
+    color: $redLight;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparentize($grayLight, .8);
+    font: {
+      weight: bold;
+      size: 1.2em;
+    }
+    line-height: 1.2em;
+    padding: 3em 0;
+    img {
+      float: left;
+      height: $footerLogoDim;
+      width: $footerLogoDim;
+      margin-right: 20px;
+    }
+    span {
+      display: block;
+    }
+  }
+  .footer-block {
+    padding: 1em;
+    @include display-flex();
+    @include flex-direction(row);
+    @include justify-content(space-between);
+  }
+  nav {
+    @include flex(3);
+    display: inline-block;
+    vertical-align: top;
+
+    li {
+      margin: 5px;
+      a {
+        display: block;
+        padding: 7px 0;
+      }
+    }
+  }
+  section {
+    h1 {
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+  }
+  .contacts, .social {
+    @include flex(1);
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 10px;
+    li {
+      display: inline-block;
+      margin: 0 10px;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+    a {
+      color: $grayLight;
+      display: inline-block;
+      height: $contactRoundDim;
+      width: $contactRoundDim;
+      border: 2px solid $grayLight;
+      border-radius: 50%;
+      font-size: $contactRoundDim / 2;
+      line-height: $contactRoundDim - 4;
+      text: {
+        align: center;
+        decoration: none;
+      }
+      position: relative;
+      @include transition(all 200ms ease-in-out);
+
+      &:hover {
+        color: $redLight;
+        border-color: $redLight;
+      }
+    }
+  }
+  .copy {
+    font-size: .8em;
+    line-height: 1.5em;
+    text-align: center;
+
+    margin: 3em 0 1.5em;
+    a {
+      color: #fff;
+      text-decoration: none;
+      @include transition(all 200ms ease-in-out);
+
+      padding: 0 10px;
+      border-left: 1px solid $redLight;
+      &:first-child {
+        padding-left: 0;
+        border: none;
+      }
+      &:last-child {
+        padding-right: 0;
+      }
+      &:hover {
+        color: $redLight;
+      }
+
+      &.red-link {
+        color: $redLight;
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
   }
 }
