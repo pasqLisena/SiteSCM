@@ -446,11 +446,16 @@ footer {
       white-space: nowrap;
     }
     a {
+      display: inline-block;
       color: #fff;
       text-decoration: none;
       @include transition(all 200ms ease-in-out);
 
       padding: 0 10px;
+      @media (max-width: 400px) {
+        padding: 6px 10px;
+        margin-top: 5px;
+      }
       border-left: 1px solid $redLight;
       &:first-child {
         padding-left: 0;
