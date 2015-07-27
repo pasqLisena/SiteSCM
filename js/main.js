@@ -1,4 +1,5 @@
 $('.popup-link').magnificPopup({
     type: 'ajax',
-    closeBtnInside: true
-}).click();
+    closeBtnInside: true,
+    mainClass: 'popup-cont'
+});

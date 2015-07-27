@@ -58,12 +58,11 @@
     <meta name="twitter:image" content="http://www.santaceciliamolfetta.it/img/photos/cover-pick.jpg">
 
 
-
     <script src="bower_components/modernizr/modernizr.js"></script>
 </head>
 <body>
 
-<header>
+<header id="header">
     <a class="logo-small" href="index.html">
         <img src="img/logos/logo-mono.png">
     </a>
@@ -152,7 +151,7 @@
     </div>
 </section>
 
-<footer>
+<footer id="footer">
     <div class="container">
         <h1 class="footer-title">
             <img class="logo-small" src="img/logos/logo-mono-light.png">
@@ -171,12 +170,17 @@
             </nav>
             <section class="contacts">
                 <ul>
-                    <li>
+                    <li class="company-action">
+                        <a class="icon-map" target="_blank" title="La nostra sede"
+                           href="https://www.google.it/maps/place/Via+Santa+Caterina,+14/@41.202885,16.5965133,17z/data=!4m3!3m2!1s0x1347f9b863aa4cdf:0x40c92dfc15718501!4b1">
+                        </a>
+                    </li>
+                    <li class="company-action">
                         <a class="icon-envelope" href="mailto:santaceciliamolfetta@gmail.com" target="_blank"
                            title="Scrivici una mail">
                         </a>
                     </li>
-                    <li>
+                    <li class="company-action">
                         <a class="icon-phone" href="tel:+393495331248" target="_blank"
                            title="Chiama il presidente dell'associazione">
                         </a>
@@ -195,17 +199,25 @@
             </section>
         </div>
         <div class="copy">
-            <p><span>&copy; 2015 Associazione Culturale Musicale</span> <span>"Santa Cecilia - Citt&agrave;
-                di Molfetta"</span></p>
+            <p>
+                <span>&copy; 2015 Associazione Culturale Musicale</span>
+                <span>"Santa Cecilia - Citt&agrave; di Molfetta"</span>
+                <span class="company-data">via S. Caterina, 14 - 70056 Molfetta (BA) ITALIA</span>
+                <br>
+                <span class="company-data">+39 349 533 1248</span>
+                <span class="company-data">santaceciliamolfetta@gmail.com</span>
+            </p>
 
             <p>
-                <a target="_blank"
+                <a target="_blank" class="company-data"
                    href="https://www.google.it/maps/place/Via+Santa+Caterina,+14/@41.202885,16.5965133,17z/data=!4m3!3m2!1s0x1347f9b863aa4cdf:0x40c92dfc15718501!4b1">
                     via S. Caterina, 14 - 70056 Molfetta (BA) ITALIA</a>
-                <a href="tel:+393495331248" target="_blank" title="Chiama il presidente dell'associazione">
+                <a href="tel:+393495331248" target="_blank" class="company-data"
+                   title="Chiama il presidente dell'associazione">
                     +39 349 533 1248
                 </a>
-                <a href="mailto:santaceciliamolfetta@gmail.com" target="_blank" title="Scrivici una mail">
+                <a href="mailto:santaceciliamolfetta@gmail.com" target="_blank" class="company-data"
+                   title="Scrivici una mail">
                     santaceciliamolfetta@gmail.com
                 </a>
             </p>
