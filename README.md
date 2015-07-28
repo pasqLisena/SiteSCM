@@ -10,12 +10,21 @@ Pre-installation:
   gem install sass --global
   gem install compass --global
   npm install bower --global
+  npm install gulp --global
 </pre>
 
 
 Installation:
 * In the project directory, run
 <pre>
+  npm install
   bower install
-  compass watch
+</pre>
+* For run in developer mode
+<pre>
+  gulp
+</pre>
+* For build in production mode (some things still "work in progress")
+<pre>
+  gulp --type production
 </pre>
