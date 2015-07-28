@@ -22,6 +22,7 @@ $contactRoundDim: 40px;
 }
 
 @mixin contain {
+  //noinspection CssUnknownProperty
   max: {
     width: 100%;
     height: 100%;
