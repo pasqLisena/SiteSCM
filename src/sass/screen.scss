@@ -4,6 +4,7 @@
 @import "../../bower_components/magnific-popup/src/css/main";
 @import "vars";
 @import "popup";
+@import "parallax";
 
 html, body {
   width: 100%;
@@ -50,6 +51,10 @@ nav a {
 }
 
 #header {
+  height: 3em;
+  min-height: 44px;
+  overflow: hidden;
+
   padding: 5px;
   color: $grayDark;
   .logo-small {
@@ -75,19 +80,27 @@ nav a {
 #cover {
   color: #fff;
   position: relative;
-  margin-bottom: $bigLogoDim / 2;
+  overflow: hidden;
+  width: 100%;
+
+  padding-bottom: $bigLogoDim / 2;
   .main {
-    width: 100%;
-    background: $grayDark url('../img/photos/cover-pic.jpg') center bottom no-repeat;
-    background-size: cover;
+    @extend .parallax-group;
     padding: 6em 0 $bigLogoDim / 2;
     position: relative;
+    background-color: $redDark;
 
     @include section-shadow;
 
+    .background {
+      content: '';
+      display: block;
+      background-size: cover;
+    }
     &:before {
       content: '';
       display: block;
+      z-index: 10;
       width: 50%;
       background: #fff;
       opacity: .17;
@@ -100,6 +113,7 @@ nav a {
   }
 
   h1 {
+    @extend .foreground;
     @include text-shadow(2px 2px 5px $grayDark);
     @include antialiasing;
 
@@ -124,12 +138,17 @@ nav a {
   }
 
   .logo-big {
+    @include transform(translateZ(0) scale(1));
     pointer-events: none;
     position: absolute;
-    bottom: - 1 / 3 * $bigLogoDim;
+    z-index: 100;
+    bottom: 5px;
     text-align: center;
     width: 100%;
-    img {
+    .logo-big-in {
+      background: $gold;
+      position: relative;
+      z-index: 2;
       height: $bigLogoDim;
       width: $bigLogoDim;
       max: {
@@ -138,8 +157,27 @@ nav a {
       }
       @include box-shadow(1px 3px 6px -1px #434343);
       @include border-radius(50%);
-      background: #fff;
-      border: 2px solid #000;
+      margin: auto;
+      overflow: hidden;
+      img {
+        height: $bigLogoDim;
+        width: $bigLogoDim;
+        max: {
+          width: $bigLogoMaxDim;
+          height: $bigLogoMaxDim;
+        }
+      }
+    }
+  }
+  .social-engage-cont {
+    &:after {
+      content: "";
+      display: block;
+      background: $grayBackground;
+      width: 100%;
+      height: calc(#{$bigLogoDim/2} + 4px);
+      position: absolute;
+      z-index: 1;
     }
   }
 }
@@ -157,6 +195,9 @@ nav a {
 }
 
 .social-engage-cont {
+  @include transform(translateZ(0) scale(1));
+  position: relative;
+  z-index: 5;
   white-space: nowrap;
   font: {
     size: 1.3em;
@@ -220,12 +261,14 @@ nav a {
   @include material-shadow;
   img {
     max-height: 100%;
+    @include border-radius(inherit);
   }
 }
 
 section.section {
   @include clearfix;
   margin: 6em auto;
+  overflow: hidden;
   @media (min-width: 701px) {
     &:nth-of-type(even) {
       .image {
@@ -319,18 +362,41 @@ section.section {
 }
 
 .parallax-item {
-  background: {
-    color: #000;
-    position: center center;
-    repeat: no-repeat;
-    size: cover;
-  }
-  min-height: 20em;
+  height: 20em;
+  width: 100%;
+
   text-align: center;
-  @include section-shadow;
-  .button {
-    margin: 6em auto;
+  overflow: hidden;
+  position: relative;
+  background-color: $grayDark;
+  .background {
+    @include section-shadow;
+    height: 160%;
+    background: {
+      color: #000;
+      position: center center;
+      repeat: no-repeat;
+      size: cover;
+    }
   }
+  .button {
+    display: inline-block;
+    margin: 6em auto;
+    position: relative;
+  }
+  @media (max-aspect-ratio: 3/4) {
+    height: calc(20em + 20vh);
+    .button {
+      margin: calc(6em + 10vh) auto;
+    }
+  }
+  @media (min-height: 900px) {
+    height: calc(20em + 20vh);
+    .button {
+      margin: calc(6em + 10vh) auto;
+    }
+  }
+
 }
 
 #footer {

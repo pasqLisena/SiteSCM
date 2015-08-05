@@ -22,7 +22,7 @@ gulp.task('build-light', ['build-bower-js', 'build-js', 'build-css'], function (
     });
 
 gulp.task('watch', function () {
-    gulp.watch('src/js/*', ['build-js']);
+    gulp.watch('src/scripts/*', ['build-js']);
     gulp.watch('src/sass/*.scss', ['build-css']);
 });
 
@@ -69,7 +69,8 @@ gulp.task('build-css', function () {
 gulp.task('build-bower-js', function () {
     return gulpBuildJs([
         'bower_components/modernizr/modernizr.js',
-        'bower_components/**/dist/*.js'
+        'bower_components/**/dist/*.js',
+        'bower_components/jquery.lazyload/jquery.lazyload.js'
     ], 'vendor.js');
 });
 
