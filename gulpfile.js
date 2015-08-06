@@ -50,7 +50,7 @@ gulp.task('copy-assets', function () {
         gulp.src(src).pipe(gulp.dest(dist));
     }
     for (var j = 0; j < assetsFiles.length; j++) {
-        gulp.src(assetsFiles[j]).pipe(gulp.dest('dist'));
+        gulp.src('src/' + assetsFiles[j]).pipe(gulp.dest('dist'));
     }
 });
 
