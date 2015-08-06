@@ -88,3 +88,6 @@ function gulpBuildJs(src, name) {
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(dist_folder));
 }
+
+//TODO browserconfig.xml
+//TODO manifest.json
