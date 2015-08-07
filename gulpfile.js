@@ -69,6 +69,8 @@ gulp.task('build-css', function () {
 gulp.task('build-bower-js', function () {
     return gulpBuildJs([
         'bower_components/modernizr/modernizr.js',
+        'bower_components/modernizr/feature-detects/css-vhunit.js',
+        'bower_components/modernizr/feature-detects/css-vwunit.js',
         'bower_components/**/dist/*.js',
         'bower_components/jquery.lazyload/jquery.lazyload.js'
     ], 'vendor.js');

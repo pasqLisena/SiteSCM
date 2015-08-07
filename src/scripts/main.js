@@ -7,8 +7,7 @@ $('.popup-link').magnificPopup({
 $(".lazy").lazyload({
     effect : "fadeIn",
     threshold : 200,
-    container: $("body"),
-    skip_invisible : true
+    container: $("body")
 });
 
 $(document).ready(function(){
