@@ -58,10 +58,47 @@ nav a {
 
   padding: 5px;
   color: $grayDark;
+  @media (min-width: 701px) and (max-width: 850px) {
+    font-size: 0.8em;
+  }
   .logo-small {
     display: inline-block;
     margin: 0 20px;
+    color: $redDark;
+    font-weight: 500;
+    .name {
+      display: inline-block;
+      vertical-align: middle;
+      span + span:before {
+        content: "-";
+        margin: 0 3px;
+      }
+      @media (min-width: 701px) and (max-width: 1000px) {
+        span {
+          display: block;
+          &:before {
+            display: none;
+          }
+        }
+      }
+      @media (max-width: 351px) {
+        span {
+          display: block;
+          &:before {
+            display: none;
+          }
+        }
+      }
+    }
+    text: {
+      decoration: none;
+      transform: uppercase;
+    }
+
     img {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
       width: $smallLogoDim;
       height: $smallLogoDim;
     }
@@ -257,9 +294,7 @@ nav a {
   }
 }
 
-.image.round {
-  height: $roundImgDim;
-  width: $roundImgDim;
+.image {
   overflow: hidden;
 
   border: 3px solid #fff;
@@ -272,11 +307,24 @@ nav a {
   @media (max-width: 700px) {
     margin: 5px auto 2em;
   }
-
-  @include border-radius(50%);
+  @include contain;
   @include material-shadow;
+
+  &.adaptive {
+    @media (min-width: 701px) {
+      width: 40em;
+      margin: 2em auto;
+    }
+    margin: 2em 1em;
+  }
+
+  &.round{
+    height: $roundImgDim;
+    width: $roundImgDim;
+    @include border-radius(50%);
+  }
   img {
-    max-height: 100%;
+    @include contain;
     @include border-radius(inherit);
   }
 }
@@ -385,6 +433,32 @@ section.section {
   overflow: hidden;
   position: relative;
   background-color: $grayDark;
+
+  h1 {
+    @include text-shadow(2px 2px 5px $grayDark);
+    @include antialiasing;
+
+    color: #fff;
+    font-size: 7em;
+    font-family: Albertus, Century Gothic, Times New Roman, serif;
+    letter-spacing: initial;
+    position: absolute;
+    bottom: .5em;
+    left: 0;
+    right: 0;
+    @media (min-width: 651px) {
+      text-align: right;
+      right: .5em;
+    }
+    @media (max-width: 1200px) {
+      font-size: 5em;
+    }
+    @media (max-width: 900px) {
+      font-size: 3em;
+    }
+
+  }
+
   .background {
     @include section-shadow;
     height: 160%;
@@ -400,20 +474,22 @@ section.section {
     margin: 6em auto;
     position: relative;
   }
-  @media (max-aspect-ratio: 3/4) {
-    height: 40em;
-    height: calc(20em + 20vh);
-    .button {
-      margin: 12em auto;
-      margin: calc(6em + 10vh) auto;
+  &:not(.titling) {
+    @media (max-aspect-ratio: 3/4) {
+      height: 40em;
+      height: calc(20em + 20vh);
+      .button {
+        margin: 12em auto;
+        margin: calc(6em + 10vh) auto;
+      }
     }
-  }
-  @media (min-height: 900px) {
-    height: 40em;
-    height: calc(20em + 20vh);
-    .button {
-      margin: 12em auto;
-      margin: calc(6em + 10vh) auto;
+    @media (min-height: 900px) {
+      height: 40em;
+      height: calc(20em + 20vh);
+      .button {
+        margin: 12em auto;
+        margin: calc(6em + 10vh) auto;
+      }
     }
   }
 
@@ -596,4 +672,26 @@ a.red-link {
   &:hover {
     color: #000;
   }
+}
+
+article {
+  padding: 3em 0;
+}
+
+.image-cont {
+  margin: 2em 0;
+  @media (min-width: 601px) {
+    @include display-flex;
+    @include justify-content(space-between);
+  }
+  .image {
+    @media (min-width: 601px) {
+      max-width: 15em;
+    }
+  }
+}
+
+figcaption {
+  color: $grayDark;
+  padding: .2em;
 }
