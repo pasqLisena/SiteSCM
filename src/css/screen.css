@@ -832,6 +832,25 @@ nav a:hover {
   margin: auto;
 }
 
+h2 {
+  text-align: center;
+  color: #962323;
+  margin: 1.5em auto;
+  font-size: 2em;
+  font-weight: 700;
+}
+
+h3 {
+  text-align: left;
+  color: #962323;
+  font-size: 1.8em;
+  margin-bottom: .2em;
+}
+h3 small {
+  font-size: 0.6em;
+  font-style: italic;
+}
+
 #header {
   height: 3em;
   min-height: 44px;
@@ -1072,6 +1091,10 @@ nav a:hover {
 }
 
 .image {
+  -moz-transition: all 200ms ease-in-out;
+  -o-transition: all 200ms ease-in-out;
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
   overflow: hidden;
   border: 3px solid #fff;
   background: #fff;
@@ -1492,6 +1515,9 @@ article {
     -webkit-justify-content: space-between;
     justify-content: space-between;
   }
+}
+.image-cont .image {
+  min-height: 5em;
 }
 @media (min-width: 601px) {
   .image-cont .image {

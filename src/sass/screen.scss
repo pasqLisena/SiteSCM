@@ -51,6 +51,27 @@ nav a {
   margin: auto;
 }
 
+h2 {
+  text-align: center;
+  color: $redDark;
+  margin: 1.5em auto;
+  font:{
+    size: 2em;
+    weight: 700;
+  }
+}
+h3{
+  text-align: left;
+  color: $redDark;
+  font-size: 1.8em;
+  margin-bottom: .2em;
+  small {
+    font:{
+      size: 0.6em;
+      style: italic;
+    }
+  }
+}
 #header {
   height: 3em;
   min-height: 44px;
@@ -295,6 +316,7 @@ nav a {
 }
 
 .image {
+  @include transition(all 200ms ease-in-out);
   overflow: hidden;
 
   border: 3px solid #fff;
@@ -685,6 +707,7 @@ article {
     @include justify-content(space-between);
   }
   .image {
+    min-height: 5em;
     @media (min-width: 601px) {
       max-width: 15em;
     }
