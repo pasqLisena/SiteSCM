@@ -41,11 +41,10 @@
     <!-- TODO test facebook https://developers.facebook.com/tools/debug/ -->
     <meta property="og:title" content="L'Associazione"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:site_name" content='Associazione Culturale Musicale "Santa Cecilia - Citt&agrave;di Molfetta"'/>
+    <meta property="og:site_name" content='Associazione Culturale Musicale "Santa Cecilia - Citt&agrave; di Molfetta"'/>
     <meta property="og:locale" content="it_IT"/>
-    <!-- TODO check path-->
     <meta property="og:image" content="http://www.santaceciliamolfetta.it/img/photos/banda_crop.jpg"/>
-    <meta property="og:url" content="http://www.santaceciliamolfetta.it"/>
+    <meta property="og:url" content="http://www.santaceciliamolfetta.it/associazione.html"/>
     <meta property="og:description"
           content="Storia della Associazione Santa Cecilia - Citt&agrave; di Molfetta">
     <meta property="fb:admins" content="pasq.lisena"/>
@@ -61,7 +60,7 @@
 <body>
 
 <header id="header">
-    <a class="logo-small" href="index.html">
+    <a target="_top" class="logo-small" href="index.html">
         <img src="img/logos/logo-mono.png">
 
         <p class="name">
@@ -71,9 +70,9 @@
     </a>
     <nav>
         <ul>
-            <li><a href="associazione.html">L'Associazione</a></li>
-            <li><a href="maestro.html">Il Maestro</a></li>
-            <li><a href="scuolamusica.html">La Scuola di Musica</a></li>
+            <li><a target="_top" href="associazione.html">L'Associazione</a></li>
+            <li><a target="_top" href="maestro.html">Il Maestro</a></li>
+            <li><a target="_top" href="scuolamusica.html">La Scuola di Musica</a></li>
         </ul>
     </nav>
 </header>
@@ -130,7 +129,7 @@
                 molfettesi distintesi per doti umane ed artistiche.
 
                 Una parte importante dell'Associazione &egrave; costituita dalla <strong>
-                <a class="red-link" href="scuolamusica.html">scuola di musica</a></strong> completamente
+                <a target="_top" class="red-link" href="scuolamusica.html">scuola di musica</a></strong> completamente
                 autogestita: maestri e professionisti del mestiere preparano i giovani allievi attraverso un serio e
                 professionale insegnamento.<br>
                 Non mancano, infine, <strong>concerti, conferenze, mostre e attivit&agrave;</strong> culturali
@@ -152,6 +151,48 @@
     </div>
 </article>
 
+<div class="parallax-item">
+    <div class="parallax-group">
+        <div class="background lazy" data-original="img/photos/gonfalone.jpg"
+             style="background-image: url('img/blank.png')"></div>
+    </div>
+</div>
+
+<section class="container organogram">
+    <h2>Organigramma associativo</h2>
+    <ul>
+        <li>
+            <label>Presidente</label>
+            <span>Giacomo Giancaspro</span>
+        </li>
+        <li>
+            <label>Vice Presidente</label>
+            <span>Felice Guarino</span>
+        </li>
+        <li>
+            <label>Segretario</label>
+            <span>Adriana Giancaspro</span>
+        </li>
+        <li>
+            <label>Tesoriere</label>
+            <span>Domenico Petruzzella</span>
+        </li>
+        <li>
+            <label>Consiglieri</label>
+            <span>
+                Antonella Gadaleta<br>
+                Vincenzo Gadaleta<br>
+                Gino Paoli<br>
+            </span>
+        </li>
+        <li>
+            <label>Direttore Artistico</label>
+            <span>M° Pasquale Turturro</span>
+        </li>
+
+    </ul>
+</section>
+
 <footer id="footer">
     <div class="container">
         <h1 class="footer-title">
@@ -163,10 +204,10 @@
         <div class="footer-block">
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="associazione.html">L'Associazione</a></li>
-                    <li><a href="maestro.html">Il Maestro</a></li>
-                    <li><a href="scuolamusica.html">La Scuola di Musica</a></li>
+                    <li><a target="_top" href="index.html">Home</a></li>
+                    <li><a target="_top" href="associazione.html">L'Associazione</a></li>
+                    <li><a target="_top" href="maestro.html">Il Maestro</a></li>
+                    <li><a target="_top" href="scuolamusica.html">La Scuola di Musica</a></li>
                 </ul>
             </nav>
             <section class="contacts">
@@ -224,8 +265,6 @@
             </p>
 
             <p>
-                <!-- TODO create route on altervista -->
-                <!-- TODO rimuovere indicizzazione di google -->
                 <a class="red-link  popup-link" href="view/credit_popup.html">Credits</a>
             </p>
         </div>

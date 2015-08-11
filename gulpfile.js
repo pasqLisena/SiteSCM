@@ -3,7 +3,9 @@ var gulp = require('gulp'),
     sass = require('gulp-compass'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
-    sourcemaps = require('gulp-sourcemaps');
+    sourcemaps = require('gulp-sourcemaps'),
+    imagemin = require('gulp-imagemin');
+
 
 var isProduction = (gutil.env.type === 'production');
 var defaultTask = isProduction ? ['build'] : ['build-light', 'watch'];
@@ -15,11 +17,11 @@ gulp.task('default', defaultTask, function () {
 });
 
 gulp.task('build',
-    ['build-bower-js', 'build-js', 'build-css', 'copy-html', 'copy-assets'],
+    ['build-bower-js', 'build-js', 'build-css', 'build-img', 'copy-html', 'copy-assets'],
     function () {
     });
 gulp.task('build-light', ['build-bower-js', 'build-js', 'build-css'], function () {
-    });
+});
 
 gulp.task('watch', function () {
     gulp.watch('src/scripts/*', ['build-js']);
@@ -40,8 +42,22 @@ gulp.task('copy-html', function () {
     }
 });
 
+
+gulp.task('build-img', function () {
+    gulp.src('src/img/*/*.ico').pipe(gulp.dest('dist/img/'));
+    gulp.src('src/img/blank.png').pipe(gulp.dest('dist/img/'));
+
+    gulp.src('src/img/*/*.jpg').pipe(imagemin({
+        progressive: true
+    })).pipe(gulp.dest('dist/img'));
+
+    gulp.src('src/img/*/*.png').pipe(imagemin({
+        progressive: true
+    })).pipe(gulp.dest('dist/img'));
+});
+
 gulp.task('copy-assets', function () {
-    var assetsFolder = ['fonts', 'img'];
+    var assetsFolder = ['fonts'];
     var assetsFiles = ['manifest.json', 'browserconfig.xml'];
     var src, dist;
     for (var i = 0; i < assetsFolder.length; i++) {
@@ -83,13 +99,9 @@ gulp.task('build-js', function () {
 function gulpBuildJs(src, name) {
     var dist_folder = isProduction ? 'dist/js' : 'src/js';
     return gulp.src(src)
-        .pipe(sourcemaps.init())
+        .pipe(isProduction ? gutil.noop(): sourcemaps.init())
         .pipe(concat(name))
         //only uglify if gulp is ran with '--type production'
-        .pipe(isProduction ? uglify() : gutil.noop())
-        .pipe(sourcemaps.write())
+        .pipe(isProduction ? uglify() : sourcemaps.write())
         .pipe(gulp.dest(dist_folder));
 }
-
-//TODO browserconfig.xml
-//TODO manifest.json

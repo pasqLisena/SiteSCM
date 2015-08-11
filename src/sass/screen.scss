@@ -55,23 +55,25 @@ h2 {
   text-align: center;
   color: $redDark;
   margin: 1.5em auto;
-  font:{
+  font: {
     size: 2em;
     weight: 700;
   }
 }
-h3{
+
+h3 {
   text-align: left;
   color: $redDark;
   font-size: 1.8em;
   margin-bottom: .2em;
   small {
-    font:{
+    font: {
       size: 0.6em;
       style: italic;
     }
   }
 }
+
 #header {
   height: 3em;
   min-height: 44px;
@@ -340,7 +342,7 @@ h3{
     margin: 2em 1em;
   }
 
-  &.round{
+  &.round {
     height: $roundImgDim;
     width: $roundImgDim;
     @include border-radius(50%);
@@ -717,4 +719,37 @@ article {
 figcaption {
   color: $grayDark;
   padding: .2em;
+}
+
+$roleMinDim: 12em;
+.organogram {
+  text-align: center;
+  ul {
+    display: inline-block;
+    margin: 0 auto 3em;
+    line-height: 1.2em;
+    li {
+      text-align: left;
+      margin-bottom: 1em;
+      span {
+        display: inline-block;
+        margin-left: calc(#{$roleMinDim} + 9px);
+      }
+      label {
+        display: inline-block;
+        vertical-align: top;
+        color: $redDark;
+        min-width: $roleMinDim;
+        text-align: right;
+        font: {
+          variant: small-caps;
+        }
+
+        + span {
+          margin-left: 5px;
+        }
+      }
+    }
+
+  }
 }

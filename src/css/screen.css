@@ -1530,4 +1530,32 @@ figcaption {
   padding: .2em;
 }
 
+.organogram {
+  text-align: center;
+}
+.organogram ul {
+  display: inline-block;
+  margin: 0 auto 3em;
+  line-height: 1.2em;
+}
+.organogram ul li {
+  text-align: left;
+  margin-bottom: 1em;
+}
+.organogram ul li span {
+  display: inline-block;
+  margin-left: calc(12em + 9px);
+}
+.organogram ul li label {
+  display: inline-block;
+  vertical-align: top;
+  color: #962323;
+  min-width: 12em;
+  text-align: right;
+  font-variant: small-caps;
+}
+.organogram ul li label + span {
+  margin-left: 5px;
+}
+
 /*# sourceMappingURL=screen.css.map */
