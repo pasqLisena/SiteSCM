@@ -1544,13 +1544,13 @@ figcaption {
 }
 .organogram ul li span {
   display: inline-block;
-  margin-left: calc(12em + 9px);
+  margin-left: calc(9em + 9px);
 }
 .organogram ul li label {
   display: inline-block;
   vertical-align: top;
   color: #962323;
-  min-width: 12em;
+  min-width: 9em;
   text-align: right;
   font-variant: small-caps;
 }
