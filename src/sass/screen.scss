@@ -150,13 +150,18 @@ h3 {
     @extend .parallax-group;
     padding: 6em 0 7em;
     padding: 6em 0 $bigLogoDim / 2;
-    background-color: $redDark;
+    // background-color: $redDark;
 
     @include section-shadow;
 
     .background {
       display: block;
-      background-size: cover;
+      background:{
+        size: cover;
+        color: $redDark;
+        position: center center;
+        repeat: no-repeat;
+      }
     }
     &:before {
       content: '';

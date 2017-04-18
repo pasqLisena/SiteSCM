@@ -7,10 +7,8 @@ Pre-installation:
 * Install [Node.JS](https://nodejs.org/)
 * From command line, install globally some Ruby gems and NPM packages
 <pre>
-  gem install sass
-  gem install compass
-  npm install bower --global
-  npm install gulp --global
+  gem install sass compass
+  npm install -g bower gulp
 </pre>
 
 
