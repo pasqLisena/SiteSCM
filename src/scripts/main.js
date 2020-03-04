@@ -1,16 +1,14 @@
-$('.popup-link').magnificPopup({
-  type: 'ajax',
-  closeBtnInside: true,
-  mainClass: 'popup-cont'
-});
+/* eslint-env browser */
 
-$(".lazy").lazyload({
-  effect: "fadeIn",
-  threshold: 200,
-  container: $("body")
-});
-
-$(document).ready(function() {
-  $(window).trigger('resize');
-  $("body").trigger('scroll');
-});
+if ('loading' in HTMLImageElement.prototype) {
+  const images = document.querySelectorAll('img.lazyload');
+  images.forEach((img) => {
+    img.src = img.dataset.src;
+  });
+} else {
+  // Dynamically import the LazySizes library
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/4.1.8/lazysizes.min.js';
+  document.body.appendChild(script);
+}

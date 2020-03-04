@@ -1,107 +1,76 @@
-var gulp = require('gulp'),
-    gutil = require('gulp-util'),
-    sass = require('gulp-compass'),
-    concat = require('gulp-concat'),
-    uglify = require('gulp-uglify'),
-    sourcemaps = require('gulp-sourcemaps'),
-    imagemin = require('gulp-imagemin');
+const {
+  watch, series, src, dest,
+} = require('gulp');
+const gutil = require('gulp-util');
+const stylus = require('gulp-stylus');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const sourcemaps = require('gulp-sourcemaps');
+const imagemin = require('gulp-imagemin');
+const fileinclude = require('gulp-file-include');
 
+const nib = require('nib');
+const mdiStylus = require('mdi-stylus');
+const rupture = require('rupture');
 
-var isProduction = (gutil.env.type === 'production');
-var defaultTask = isProduction ? ['build'] : ['build-light', 'watch'];
+const isProduction = (gutil.env.type === 'production');
 
-gulp.task('default', defaultTask, function () {
-    gutil.log('Gulp is running!');
-    var enviroment_type = gutil.env.type || 'default';
-    gutil.log('Enviroment: ' + enviroment_type);
-});
+const DIST_FOLDER = 'dist';
 
-gulp.task('build',
-    ['build-bower-js', 'build-js', 'build-css', 'build-img', 'copy-html', 'copy-assets'],
-    function () {
-    });
-gulp.task('build-light', ['build-bower-js', 'build-js', 'build-css'], function () {
-});
+function buildHtml() {
+  const out = isProduction ? DIST_FOLDER : 'src';
 
-gulp.task('watch', function () {
-    gulp.watch('src/scripts/*', ['build-js']);
-    gulp.watch('src/sass/*.scss', ['build-css']);
-});
-
-gulp.task('copy-html', function () {
-    var staticMapping = [{
-        src: 'src/*.html',
-        dist: 'dist'
-    }, {
-        src: 'src/view/*',
-        dist: 'dist/view'
-    }];
-    for (var i = 0; i < staticMapping.length; i++) {
-        var res = staticMapping[i];
-        gulp.src(res.src).pipe(gulp.dest(res.dist));
-    }
-});
-
-
-gulp.task('build-img', function () {
-    gulp.src('src/img/*/*.ico').pipe(gulp.dest('dist/img/'));
-    gulp.src('src/img/blank.png').pipe(gulp.dest('dist/img/'));
-
-    gulp.src('src/img/*/*.jpg').pipe(imagemin({
-        progressive: true
-    })).pipe(gulp.dest('dist/img'));
-
-    gulp.src('src/img/*/*.png').pipe(imagemin({
-        progressive: true
-    })).pipe(gulp.dest('dist/img'));
-});
-
-gulp.task('copy-assets', function () {
-    var assetsFolder = ['fonts'];
-    var assetsFiles = ['manifest.json', 'browserconfig.xml'];
-    var src, dist;
-    for (var i = 0; i < assetsFolder.length; i++) {
-        src = 'src/' + assetsFolder[i] + '/**/*';
-        dist = 'dist/' + assetsFolder[i];
-        gulp.src(src).pipe(gulp.dest(dist));
-    }
-    for (var j = 0; j < assetsFiles.length; j++) {
-        gulp.src('src/' + assetsFiles[j]).pipe(gulp.dest('dist'));
-    }
-});
-
-gulp.task('build-css', function () {
-    var sass_config = {
-        css: isProduction ? "dist/css" : "src/css",
-        sass: "src/sass",
-        style: isProduction ? "compressed" : "expanded",
-        comments: !isProduction,
-        sourcemap: true
-    };
-    return gulp.src('src/sass/*.scss')
-        .pipe(sass(sass_config));
-});
-
-gulp.task('build-bower-js', function () {
-    return gulpBuildJs([
-        'bower_components/modernizr/modernizr.js',
-        'bower_components/modernizr/feature-detects/css-vhunit.js',
-        'bower_components/modernizr/feature-detects/css-vwunit.js',
-        'bower_components/**/dist/*.js',
-        'bower_components/jquery.lazyload/jquery.lazyload.js'
-    ], 'vendor.js');
-});
-
-gulp.task('build-js', function () {
-    return gulpBuildJs('src/scripts/*.js', 'scecilia.js');
-});
-
-function gulpBuildJs(src, name) {
-    var dist_folder = isProduction ? 'dist/js' : 'src/js';
-    return gulp.src(src)
-        .pipe(isProduction ? gutil.noop(): sourcemaps.init())
-        .pipe(concat(name))
-        //only uglify if gulp is ran with '--type production'
-        .pipe(isProduction ? uglify() : sourcemaps.write())
-        .pipe(gulp.dest(dist_folder));
+  return src('src/html/*.html')
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: '@file',
+    }))
+    .pipe(dest(out));
 }
+
+function buildImg() {
+  const files = ['jpg', 'png', 'ico'].map((ext) => `src/img/**/*.${ext}`);
+  return src(files)
+    .pipe(imagemin({ progressive: true }))
+    .pipe(dest(`${DIST_FOLDER}/img`));
+}
+
+function copyAssets() {
+  return src(['src/manifest.json', 'src/browserconfig.xml'])
+    .pipe(dest(DIST_FOLDER));
+}
+
+function copyFonts() {
+  return src('src/fonts/**/*')
+    .pipe(dest(`${DIST_FOLDER}/fonts`));
+}
+
+function buildCss() {
+  const out = isProduction ? `${DIST_FOLDER}/css` : 'src/css';
+  return src('src/stylus/screen.styl')
+    .pipe(stylus({
+      compress: isProduction,
+      use: [nib(), mdiStylus(), rupture()],
+    }))
+    .pipe(dest(out));
+}
+
+function buildJs() {
+  const out = isProduction ? `${DIST_FOLDER}/js` : 'src/js';
+  return src('src/scripts/*.js')
+    .pipe(isProduction ? gutil.noop() : sourcemaps.init())
+    .pipe(concat('main.js'))
+    // only uglify if gulp is ran with '--type production'
+    .pipe(isProduction ? uglify() : sourcemaps.write())
+    .pipe(dest(out));
+}
+
+function watching() {
+  watch('src/scripts/*', buildJs);
+  watch('src/stylus/*.styl', buildCss);
+  watch('src/html/**/*.html', buildHtml);
+}
+
+
+exports.build = series(buildJs, buildCss, buildImg, buildHtml, copyFonts, copyAssets);
+exports.serve = series(buildJs, buildCss, buildHtml, watching);
