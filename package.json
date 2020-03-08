@@ -18,23 +18,11 @@
   },
   "homepage": "https://github.com/pasqLisena/SiteSCM",
   "devDependencies": {
-    "acorn": "^7.1.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
-    "gulp": "^4.0.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-file-include": "^2.1.1",
-    "gulp-imagemin": "^7.1.0",
-    "gulp-sourcemaps": "^2.6.5",
-    "gulp-stylus": "^2.7.0",
-    "gulp-uglify": "^3.0.2",
-    "gulp-util": "^3.0.8",
     "mdi-stylus": "0.0.5",
     "nib": "^1.1.2",
     "rupture": "^0.7.1"
-  },
-  "dependencies": {
-    "gulp-serve": "^1.4.0"
   }
 }

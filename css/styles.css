@@ -504,11 +504,6 @@ nav a {
 nav a:hover {
   color: #ca4646;
 }
-.container {
-  width: 100%;
-  max-width: 900px;
-  margin: auto;
-}
 h2 {
   text-align: center;
   color: #962323;
@@ -815,61 +810,70 @@ h3 small {
   max-width: 100%;
   max-height: 100%;
 }
-section.section {
+.summary-box {
+  width: 100%;
+  max-width: 900px;
   zoom: 1;
   margin: 6em auto;
   overflow: hidden;
 }
-section.section:before,
-section.section:after {
+@media only screen and (max-width: 900px) {
+  .summary-box {
+    padding: 1em;
+  }
+}
+.summary-box:before,
+.summary-box:after {
   content: "";
   display: table;
 }
-section.section:after {
+.summary-box:after {
   clear: both;
 }
+.summary-box p {
+  margin: 0 2em !important;
+}
 @media only screen and (min-width: 701px) {
-  section.section:nth-of-type(even) .image {
+  .summary-box:nth-of-type(odd) .image {
     float: left;
   }
-  section.section:nth-of-type(even) .button {
+  .summary-box:nth-of-type(odd) .button {
     float: right;
   }
-  section.section:nth-of-type(odd) .image {
+  .summary-box:nth-of-type(even) .image {
     float: right;
   }
-  section.section:nth-of-type(odd) .button {
+  .summary-box:nth-of-type(even) .button {
     float: left;
   }
 }
-section.section .button {
-  margin: 20px auto;
-}
-.description {
-  margin: 5px 4em;
+.container p,
+.container .image-cont {
+  width: 100%;
+  max-width: 900px;
+  margin: 2em auto;
+  padding: 1em;
   text-align: center;
 }
-@media only screen and (max-width: 900px) {
-  .description {
-    margin: 5px 3em;
-  }
-}
-@media only screen and (max-width: 700px) {
-  .description {
-    margin: 5px 4em;
-  }
-}
-.description p {
+.container p {
   text-align: left;
   font-size: 1.3em;
   line-height: 1.4em;
 }
-.description p strong {
+.container p strong {
   color: #962323;
 }
-.description p strong.stronger {
+.container p strong.stronger {
   font-size: 1.3em;
   font-weight: bold;
+}
+.container p a,
+a.red-link {
+  color: #ca4646;
+}
+.container p a:hover,
+a.red-link:hover {
+  color: #000;
 }
 .button {
   text-transform: uppercase;
@@ -1142,33 +1146,20 @@ section.section .button {
   color: #ca4646;
   border-color: #ca4646;
 }
-@media only screen and (min-width: 701px) {
-  #footer span.company-data {
-    display: none;
-  }
-}
-#footer span.company-data + span.company-data {
-  border-left: 1px solid #ca4646;
-}
-#footer a.company-data {
-  border-left: 1px solid #ca4646;
-}
-@media only screen and (max-width: 700px) {
-  #footer a.company-data {
-    display: none;
-  }
-}
-#footer a.company-data:first-child {
-  padding-left: 0;
-  border: none;
-}
-#footer a.company-data:last-child {
-  padding-right: 0;
-}
 #footer .company-data {
   display: inline-block;
   color: #fff;
   padding: 0 10px;
+}
+#footer .company-data + .company-data {
+  border-left: 1px solid #ca4646;
+}
+#footer .company-data:first-child {
+  padding-left: 0;
+  border: none;
+}
+#footer .company-data:last-child {
+  padding-right: 0;
 }
 #footer .copy {
   font-size: 0.8em;
@@ -1194,22 +1185,8 @@ section.section .button {
 #footer .copy a.red-link {
   color: #ca4646;
 }
-@media only screen and (max-width: 700px) {
-  #footer .copy a.red-link {
-    display: inline-block;
-    min-width: 8em;
-    min-height: 3em;
-    line-height: 4em;
-  }
-}
 #footer .copy a.red-link:hover {
   color: #fff;
-}
-a.red-link {
-  color: #ca4646;
-}
-a.red-link:hover {
-  color: #000;
 }
 article {
   padding: 3em 0;
@@ -1272,3 +1249,4 @@ figcaption {
 .organogram ul li label + span {
   margin-left: 5px;
 }
+/*# sourceMappingURL=styles.css.map */

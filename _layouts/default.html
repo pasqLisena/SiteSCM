@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <title>{{page.title}} | Santa Cecilia - Citt&agrave; di Molfetta</title>
+
+  {% include metas.html %}
+
+</head>
+
+<body>
+
+  {% include header.html %}
+
+  <div class="parallax-item titling">
+    <div class="parallax-group">
+      <img class="background lazyload" loading="lazy" data-src="{{page.cover}}"/>
+      <h1 class="foreground">{{page.title}}</h1>
+    </div>
+  </div>
+
+
+  <div class="container">
+    {{ content }}
+  </div>
+
+  {% include footer.html %}
+
+
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+<figure class="image {% if include.adaptive %} adaptive {% endif %}">
+  <img loading="lazy" class="lazyload" data-src="{{include.image}}">
+  {% if include.caption %}
+  <figcaption>{{include.caption}}</figcaption>
+  {% endif %}
+</figure>

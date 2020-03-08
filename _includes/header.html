@@ -1,0 +1,25 @@
+<header id="header">
+  <a target="_top" class="logo-small" href="index.html">
+    <img src="img/logos/logo-mono.png">
+
+    <p class="name">
+      <span>Santa Cecilia</span>
+      <span>Citt&agrave; di Molfetta</span>
+    </p>
+  </a>
+  <nav>
+    <ul>
+      {% assign navigation_pages = site.html_pages | sort: 'navigation_weight' %} {% for p in navigation_pages %} {% if p.navigation_weight > 0 %}
+      <li>
+        <a href="{{ p.url }}" {% if p.url==page.url %} class="active" {% endif %}>
+          {{ p.shorttitle | default: p.title }}
+        </a>
+      </li>
+      {% endif %} {% endfor %}
+
+      <!-- <li><a target="_top" href="associazione.html">L'Associazione</a></li>
+      <li><a target="_top" href="maestro.html">Il Maestro</a></li>
+      <li><a target="_top" href="scuolamusica.html">La Scuola di Musica</a></li> -->
+    </ul>
+  </nav>
+</header>

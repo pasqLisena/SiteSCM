@@ -1,3 +1,5 @@
+// out: ../css/styles.css, sourcemap: true, compress: false, libs: nib rupture mdi-stylus
+
 @import 'nib'
 @import 'nib/reset'
 
@@ -31,10 +33,6 @@ nav a
   transition color 200ms ease-in-out
   &:hover
     color: $redLight
-.container
-  width: 100%
-  max-width: 900px
-  margin: auto
 h2
   text-align: center
   color: $redDark
@@ -248,30 +246,37 @@ h3
   img
     contain()
     border-radius inherit
-section.section
+
+.summary-box
+  width: 100%
+  max-width: 900px
+  +below(900px)
+    padding: 1em
+
   clearfix()
   margin: 6em auto
   overflow: hidden
+  p
+    margin 0 2em !important
   +above(701px)
-    &:nth-of-type(even)
-      .image
-        float: left
-      .button
-        float: right
     &:nth-of-type(odd)
       .image
+        float: left
+      .button
+        float: right
+    &:nth-of-type(even)
+      .image
         float: right
       .button
         float: left
-  .button
-    margin: 20px auto
-.description
-  margin: 5px 4em
-  text-align: center
-  +below(900px)
-    margin: 5px 3em
-  +below(700px)
-    margin: 5px 4em
+
+.container
+  p, .image-cont
+    width: 100%
+    max-width: 900px
+    margin: 2em auto
+    padding: 1em
+    text-align: center
   p
     text-align: left
     font-size: 1.3em
@@ -281,6 +286,12 @@ section.section
       &.stronger
         font-size: 1.3em
         font-weight: bold
+
+.container p a, a.red-link
+  color: $redLight
+  &:hover
+    color: #000
+
 .button
   text-transform: uppercase
   text-decoration: none
@@ -443,24 +454,17 @@ section.section
       &:hover
         color: $redLight
         border-color: $redLight
-  span.company-data
-    +above(701px)
-      display: none
-    & + span.company-data
+  .company-data
+    display: inline-block
+    color: #fff
+    padding: 0 10px
+    & + .company-data
       border-left: 1px solid $redLight
-  a.company-data
-    +below(700px)
-      display: none
-    border-left: 1px solid $redLight
     &:first-child
       padding-left: 0
       border: none
     &:last-child
       padding-right: 0
-  .company-data
-    display: inline-block
-    color: #fff
-    padding: 0 10px
   .copy
     font-size: .8em
     line-height: 1.5em
@@ -475,17 +479,9 @@ section.section
         color: $redLight
       &.red-link
         color: $redLight
-        +below(700px)
-          display: inline-block
-          min-width: 8em
-          min-height: 3em
-          line-height: 4em
         &:hover
           color: #fff
-a.red-link
-  color: $redLight
-  &:hover
-    color: #000
+
 article
   padding: 3em 0
 .image-cont
